@@ -234,14 +234,11 @@ const KoleksiCarousel = () => {
             {image.map((img, index) => (
               <div key={img.id} className="w-full flex-shrink-0 relative">
                 <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                  {/* Image */}
                   <div className="w-full h-full flex items-center">
-                    {/* <span className="text-gray-500 text-lg font-medium">{img.src}</span> */}
-                    {/* Replace with actual Image component when you have the images imported */}
                     <Image
                       src={img.src}
                       alt={img.alt}
-                      fill
+                      
                       className="object-cover"
                     />
                   </div>
@@ -253,9 +250,7 @@ const KoleksiCarousel = () => {
 
       </div>
 
-      {/* Navigation controls container */}
       <div className="flex justify-center items-center pt-[54px] gap-4 overflow-hidden">
-        {/* Previous button */}
         <button
           onClick={prevSlide}
           className="bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-4 transition-all duration-300 cursor-pointer border border-white/20 hover:scale-110 text-gray-700 hover:text-gray-900"
@@ -264,7 +259,6 @@ const KoleksiCarousel = () => {
           <MoveLeft className="w-6 h-6 text-[#62748E]" />
         </button>
 
-        {/* Dot indicators */}
         <div className="flex space-x-3">
           {image.map((_, index) => (
             <button

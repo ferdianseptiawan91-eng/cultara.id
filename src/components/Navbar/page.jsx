@@ -5,6 +5,7 @@ import Hamburger from "@/assets/icons/Hamburger.svg"
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [activeSection, setActiveSection] = useState("");
@@ -68,7 +69,8 @@ export default function Navbar() {
                     className="cursor-pointer"
                     onClick={() => setIsOpen(!isOpen)}
                 >
-                    <Image src={Hamburger} width={24} height={24} alt="Menu Icon" />
+                    {isOpen && <X />}
+                    {!isOpen && <Menu />}
                 </button>
             </div>
 
