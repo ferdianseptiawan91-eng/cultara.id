@@ -6,6 +6,15 @@ import Footer from "@/components/Footer/page";
 export const metadata = {
   title: "Cultara",
   description: "#Jaga Budaya",
+  keywords: [
+    "Cultara",
+    "Kaos Budaya Jawa",
+    "Kaos Tradisional",
+    "T-Shirt Jawa",
+    "Batik Modern",
+    "Online Shop Kaos",
+    "Pakaian Budaya Indonesia"
+  ]
 };
 
 const Libre = Libre_Bodoni({
