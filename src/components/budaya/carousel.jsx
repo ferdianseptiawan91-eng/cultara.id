@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, MoveLeft, MoveRight } from 'lucide-react';
+import { MoveLeft, MoveRight } from 'lucide-react';
 import Budaya1 from "@/assets/image/budaya1.png"
 import Budaya2 from "@/assets/image/budaya2.png"
 import Budaya3 from "@/assets/image/budaya3.png"
@@ -14,6 +14,17 @@ import Budaya8 from "@/assets/image/budaya8.png"
 import Budaya9 from "@/assets/image/budaya9.png"
 import Budaya10 from "@/assets/image/budaya10.png"
 import Budaya11 from "@/assets/image/budaya11.png"
+import Budaya1Mobile from "@/assets/image/budaya1mobile.png"
+import Budaya2Mobile from "@/assets/image/budaya2mobile.png"
+import Budaya3Mobile from "@/assets/image/budaya3mobile.png"
+import Budaya4Mobile from "@/assets/image/budaya4mobile.png"
+import Budaya5Mobile from "@/assets/image/budaya5mobile.png"
+import Budaya6Mobile from "@/assets/image/budaya6mobile.png"
+import Budaya7Mobile from "@/assets/image/budaya7mobile.png"
+import Budaya8Mobile from "@/assets/image/budaya8mobile.png"
+import Budaya9Mobile from "@/assets/image/budaya9mobile.png"
+import Budaya10Mobile from "@/assets/image/budaya10mobile.png"
+import Budaya11Mobile from "@/assets/image/budaya11mobile.png"
 
 const CultureCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,10 +36,32 @@ const CultureCarousel = () => {
 
   // Sample data - replace with your actual data
   const image = [
-    { id: 1, src: Budaya1, alt: 'Budaya 1' },
-    { id: 2, src: Budaya2, alt: 'Budaya 2' },
-    { id: 3, src: Budaya3, alt: 'Budaya 3' },
+    { id: 1, src: Budaya1, alt: "Budaya 1" },
+    { id: 2, src: Budaya2, alt: "Budaya 2" },
+    { id: 3, src: Budaya3, alt: "Budaya 3" },
+    { id: 4, src: Budaya4, alt: "Budaya 4" },
+    { id: 5, src: Budaya5, alt: "Budaya 5" },
+    { id: 6, src: Budaya6, alt: "Budaya 6" },
+    { id: 7, src: Budaya7, alt: "Budaya 7" },
+    { id: 8, src: Budaya8, alt: "Budaya 8" },
+    { id: 9, src: Budaya9, alt: "Budaya 9" },
+    { id: 10, src: Budaya10, alt: "Budaya 10" },
+    { id: 11, src: Budaya11, alt: "Budaya 11" },
   ];
+
+  const imageMobile = [
+  { id: 1, src: Budaya1Mobile, alt: "Budaya 1 Mobile" },
+  { id: 2, src: Budaya2Mobile, alt: "Budaya 2 Mobile" },
+  { id: 3, src: Budaya3Mobile, alt: "Budaya 3 Mobile" },
+  { id: 4, src: Budaya4Mobile, alt: "Budaya 4 Mobile" },
+  { id: 5, src: Budaya5Mobile, alt: "Budaya 5 Mobile" },
+  { id: 6, src: Budaya6Mobile, alt: "Budaya 6 Mobile" },
+  { id: 7, src: Budaya7Mobile, alt: "Budaya 7 Mobile" },
+  { id: 8, src: Budaya8Mobile, alt: "Budaya 8 Mobile" },
+  { id: 9, src: Budaya9Mobile, alt: "Budaya 9 Mobile" },
+  { id: 10, src: Budaya10Mobile, alt: "Budaya 10 Mobile" },
+  { id: 11, src: Budaya11Mobile, alt: "Budaya 11 Mobile" },
+];
 
   const slides = image;
 
@@ -136,8 +169,16 @@ const CultureCarousel = () => {
     };
   };
 
+  const maxVisible = 4; // maksimal dot terlihat
+  let start = Math.min(
+    Math.max(0, currentSlide - Math.floor(maxVisible / 2)),
+    Math.max(0, image.length - maxVisible)
+  );
+  let end = Math.min(image.length, start + maxVisible);
+  const visibleDots = image.slice(start, end);
+
   return (
-    <div className="relative w-full max-w-[729px] mx-auto py-12 px-4">
+    <div className="relative w-full mx-auto lg:py-12 px-4">
       {/* Main carousel container */}
       <div className="relative overflow-hidden">
 
@@ -168,7 +209,7 @@ const CultureCarousel = () => {
                 zIndex = 20;
               } else if (position === 1 || position === image.length - 1) {
                 // Adjacent slides (left and right)
-                const baseTranslateX = position === 1 ? 210 : -210;
+                const baseTranslateX = position === 1 ? 110 : -110;
                 translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
                 scale = 1;
                 zIndex = 10;
@@ -198,21 +239,20 @@ const CultureCarousel = () => {
                   onClick={() => {
                     if (isDragging || Math.abs(dragOffset) > 5) {
                       e.preventDefault();
-                      e.stopPropagation(); 
+                      e.stopPropagation();
                       return;
                     }
                     if (position === 1) nextSlide();
                     else if (position === image.length - 1) prevSlide();
                   }}
                 >
-                  <div className={`relative transition-all duration-300 ${position === 0 ? 'w-[571px] h-[320px]' : 'w-[259px] h-[280px]'} overflow-hidden cursor-pointer hover:cursor-pointer`}>
+                  <div className={`relative transition-all duration-300 ${position === 0 ? 'w-[571px] h-[320px]' : 'w-[571px] h-[280px]'} overflow-hidden cursor-pointer hover:cursor-pointer`}>
                     <div className="w-full h-full flex items-center justify-center">
                       <Image
                         src={img.src}
                         alt={img.alt}
-                        width={380}
-                        height={320}
-                        className="object-cover min-w-[380] min-h-[320] rounded-2xl"
+                        fill
+                        className="object-contain rounded-2xl"
                       />
                     </div>
                   </div>
@@ -227,7 +267,7 @@ const CultureCarousel = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="md:hidden relative h-96 overflow-hidden rounded-2xl">
+          className="md:hidden relative overflow-hidden rounded-2xl">
           <div
             className="flex transition-transform duration-500 ease-in-out h-full"
             style={{
@@ -236,18 +276,18 @@ const CultureCarousel = () => {
                 -currentSlide * 100}%)`
             }}
           >
-            {image.map((img, index) => (
+            {imageMobile.map((img, index) => (
               <div key={img.id} className="w-full flex-shrink-0 relative">
                 <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                   {/* Image */}
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-[380px] h-[320px] flex items-center justify-center">
                     {/* <span className="text-gray-500 text-lg font-medium">{img.src}</span> */}
                     {/* Replace with actual Image component when you have the images imported */}
                     <Image
                       src={img.src}
                       alt={img.alt}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 </div>
@@ -269,23 +309,26 @@ const CultureCarousel = () => {
           <MoveLeft className="w-6 h-6 text-[#62748E]" />
         </button>
 
-        {/* Dot indicators */}
-        <div className="flex space-x-3">
-          {image.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`relative overflow-hidden rounded-full transition-all duration-300 cursor-pointer ${index === currentSlide
-                ? 'w-4 h-2 bg-primary'
-                : 'w-3 h-2 bg-gray-400/60 hover:bg-gray-400/80'
-                }`}
-              aria-label={`Go to slide ${index + 1}`}
-            >
-              {index === currentSlide && (
-                <div className="absolute inset-0 bg-primary rounded-full" />
-              )}
-            </button>
-          ))}
+        <div className="flex space-x-3 transition-transform duration-300">
+          {visibleDots.map((_, idx) => {
+            // hitung index aslinya
+            const realIndex = start + idx;
+            return (
+              <button
+                key={realIndex}
+                onClick={() => goToSlide(realIndex)}
+                className={`relative overflow-hidden rounded-full transition-all duration-300 cursor-pointer ${realIndex === currentSlide
+                    ? "w-4 h-2 bg-primary"
+                    : "w-3 h-2 bg-gray-400/60 hover:bg-gray-400/80"
+                  }`}
+                aria-label={`Go to slide ${realIndex + 1}`}
+              >
+                {realIndex === currentSlide && (
+                  <div className="absolute inset-0 bg-primary rounded-full" />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* Next button */}
@@ -297,6 +340,8 @@ const CultureCarousel = () => {
           <MoveRight className="w-6 h-6 text-[#62748E]" />
         </button>
       </div>
+
+
     </div>
   );
 };

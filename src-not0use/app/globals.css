@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --font-spartan: "var(--font-spartan)";
+  --font-libre: "var(--font-libre)";
+  --color-primary: #F4A22B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.background-home {
+  background-image: url('/public/Bg-Home.png');
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
