@@ -12,10 +12,11 @@ import Background from "@/assets/image/BgKataMereka.png"
 
 export default function SectionKataMereka() {
     const [activeId, setActiveId] = useState(null);
+    const [entered, setEntered] = useState(false)
     const image = [
-        { id: 1, src: KataMereka1, alt: "Testimoni 1" },
-        { id: 2, src: KataMereka2, alt: "Testimoni 2" },
-        { id: 3, src: KataMereka3, alt: "Testimoni 3" }
+        { id: 1, src: KataMereka1, alt: "Testimoni 1", content: "Checkout karena iseng tengah malem haha. Eh taunya bagus, mantap seller👌 Bahannya adem, desainnya oke. Sukses minn😇😇", name: "i*****e", shop: "Shopee" },
+        { id: 2, src: KataMereka2, alt: "Testimoni 2", content: "Ukurannya pas Tinggi badan 160 - 170 cm Berat badan 60 - 70 kg. bahannya bagus, adhem, dan semoga awet. dapathadiah pin dan stiker. ... rekomenadasilah... ntr bisa beli lagi. makasih", name: "Iwa", shop: "Tokopedia" },
+        { id: 3, src: KataMereka3, alt: "Testimoni 3", content: "Mantap..Mendarat dengan cepat.. Dikasih bonus stiker dan pin, ga nyangka.. bahan halus sesuai deskripsi, puas pokoknya.. rekomendasi bgtt👍❤️", name: "Ismail", shop: "Tiktok" }
     ]
     return (
         <div className="p-6 lg:px-[120px] lg:py-[287px] flex flex-col lg:flex-row lg:justify-center lg:gap-16 lg:items-center w-full gap-6 relative">
@@ -57,9 +58,18 @@ export default function SectionKataMereka() {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="hidden min-w-[655px] lg:flex gap-4 justify-end z-20">
-                {image.map((item) => {
+                onAnimationComplete={() => {
+                    setEntered(true);
+                    setTimeout(() => {
+                        setActiveId(image[0].id);
+                    }, 0.6 * 1000)
+                }}
+                className="hidden min-w-[655px] lg:flex gap-4 justify-end items-end z-20">
+                {image.map((item, index) => {
                     const isActive = activeId === item.id;
+                    const initialHeight = [192, 255, 313];
+                    const startHeight = initialHeight[index] ?? 313;
+                    const finalHeight = 313
                     const isExpanding = activeId === item.id;
                     const isCollapsing = activeId !== item.id && activeId !== null;
                     return (
@@ -68,6 +78,7 @@ export default function SectionKataMereka() {
                             layout
                             initial={false}
                             animate={{
+                                height: entered ? finalHeight : startHeight,
                                 width: isActive ? 413 : 105,
                             }}
                             className="border border-[#B29980] flex overflow-hidden"
@@ -78,8 +89,8 @@ export default function SectionKataMereka() {
                                 }
                             }}
                             style={{
-                                minWidth: 105,
-                                height: 313
+                                minWidth: 105
+                                // height: 313
                             }}
                         >
                             <div className="w-[105px] flex-shrink-0 relative z-10 min-w-[105px]">
@@ -128,8 +139,7 @@ export default function SectionKataMereka() {
                                         <div className="flex flex-col gap-2">
                                             <Image src={Quote} alt="Quote" width={40} height={40} />
                                             <p className="text-xl text-[#555555]">
-                                                Checkout karena iseng tengah malem haha. Eh taunya bagus,
-                                                mantap seller👌 Bahannya adem, desainnya oke. Sukses minn😇😇
+                                                {item.content}
                                             </p>
                                         </div>
                                         <div className="flex flex-col gap-1">

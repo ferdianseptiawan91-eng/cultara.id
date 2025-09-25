@@ -25,15 +25,15 @@ const KoleksiCarousel = () => {
   const slides = image;
 
   // Auto-play functionality
-  // useEffect(() => {
-  //   if (!isAutoPlaying) return;
+  useEffect(() => {
+    if (!isAutoPlaying) return;
 
-  //   const interval = setInterval(() => {
-  //     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  //   }, 4000);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
 
-  //   return () => clearInterval(interval);
-  // }, [isAutoPlaying, image.length]);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, image.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);

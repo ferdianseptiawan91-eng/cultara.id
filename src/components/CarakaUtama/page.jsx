@@ -5,21 +5,31 @@ import ArrowRight from "@/assets/icons/ArrowRight.svg"
 import { motion } from "motion/react"
 export default function CarakaUtamaSection() {
     return (
-        <div className="bg-[#272626] lg:min-h-[768px] flex flex-col lg:flex-row lg:justify-end lg:items-center gap-4 p-6 relative">
+        <div className="bg-[#272626] lg:min-h-[768px] flex flex-col lg:flex-row lg:justify-end items-center gap-16 lg:gap-28 px-6 py-20 lg:py-6 relative overflow-hidden">
             {/* Gambar mobile */}
             <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="lg:hidden"
+                className="lg:hidden rounded-full bg-radial from-[#EA9B4C99] to-[#B299800D] w-[294px] h-[294px]"
             >
-                <Image
-                    src={CarakaSmall}
-                    width={380}
-                    height={416}
-                    alt="Caraka Utama"
-                />
+                <motion.div
+                    animate={{ y: [0, 20, 0] }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                    className="-ml-8 -mt-16"
+                >
+                    <Image
+                        src={CarakaLarge}
+                        width={299}
+                        height={416}
+                        alt="Caraka Utama"
+                    />
+                </motion.div>
             </motion.div>
 
             {/* Gambar desktop */}
@@ -28,14 +38,24 @@ export default function CarakaUtamaSection() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="hidden lg:block absolute bottom-0 left-[120px]"
+                className="hidden lg:flex justify-center  rounded-full bg-radial from-[#EA9B4C99] to-[#B299800D] w-[466px] h-[466px]"
             >
-                <Image
-                    src={CarakaLarge}
-                    width={597}
-                    height={688}
-                    alt="Caraka Utama"
-                />
+                <motion.div
+                    animate={{ y: [0, 40, 0] }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                    className="-ml-24 -mt-16"
+                >
+                    <Image
+                        src={CarakaLarge}
+                        width={475}
+                        height={688}
+                        alt="Caraka Utama"
+                    />
+                </motion.div>
             </motion.div>
 
             {/* Konten teks */}
