@@ -33,12 +33,12 @@ export default function SectionHome() {
                     width={331}
                     height={406}
                     alt="Jaga Budaya"
-                    className="relative top-[46px] z-10 w-[251px] lg:w-[605px] lg:top-[65px] -left-3"
+                    className="relative top-[46px] z-10 lg:w-[605px] lg:top-[65px] -left-3"
                 />
 
                 {/* Good Quality di kiri atas, lebih depan */}
                 <motion.div
-                    className="absolute -left-5 lg:left-0 bottom-22 lg:bottom-8 z-20"
+                    className="absolute left-4 lg:left-0 bottom-22 lg:bottom-8 z-20"
                     animate={{ y: [0, 20, 0] }}
                     transition={{
                         duration: 2,

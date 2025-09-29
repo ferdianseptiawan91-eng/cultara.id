@@ -1,36 +1,46 @@
-import CarakaSmall from "@/assets/image/CarakaUtamaSmall.png"
-import CarakaLarge from "@/assets/image/CarakaUtamaLarge.png"
+"use client"
+import CarakaLarge from "@/assets/image/Caraka.png"
 import Image from "next/image"
 import ArrowRight from "@/assets/icons/ArrowRight.svg"
 import { motion } from "motion/react"
+import { useState } from "react"
 export default function CarakaUtamaSection() {
+    const [startLoop, setStartLoop] = useState(false)
     return (
-        <div className="bg-[#272626] lg:min-h-[768px] flex flex-col lg:flex-row lg:justify-end items-center gap-16 lg:gap-28 px-6 py-20 lg:py-6 relative overflow-hidden">
+        <div className="bg-[#272626] lg:min-h-[768px] flex flex-col lg:flex-row lg:justify-end items-center gap-4 lg:gap-28 px-6 py-10 lg:py-6 relative overflow-hidden">
             {/* Gambar mobile */}
-            <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="lg:hidden rounded-full bg-radial from-[#EA9B4C99] to-[#B299800D] w-[294px] h-[294px]"
-            >
+            <div className="min-h-[416px] w-full overflow-hidden flex flex-col items-center relative lg:hidden">
                 <motion.div
-                    animate={{ y: [0, 20, 0] }}
-                    transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    className="-ml-8 -mt-16"
+                    initial={{ x: -100, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="rounded-full bg-radial from-[#EA9B4C99] to-[#B299800D] w-[294px] h-[294px] mt-16"
+                />
+                <motion.div
+                    initial={{ x: -100, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    onAnimationComplete={() => setStartLoop(true)}
+                    className="absolute -translate-x-8"
                 >
-                    <Image
-                        src={CarakaLarge}
-                        width={299}
-                        height={416}
-                        alt="Caraka Utama"
-                    />
+                    <motion.div
+                        animate={
+                            startLoop
+                                ? { y: [0, 20, 0] }
+                                : {}
+                        }
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    >
+                        <Image src={CarakaLarge} width={300} height={416} alt="Caraka Utama" />
+                    </motion.div>
                 </motion.div>
-            </motion.div>
+            </div>
 
             {/* Gambar desktop */}
             <motion.div

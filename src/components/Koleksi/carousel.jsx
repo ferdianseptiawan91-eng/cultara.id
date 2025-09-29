@@ -4,8 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, MoveLeft, MoveRight, MoveUpRight } from 'lucide-react';
 import Koleksi1 from "@/assets/image/Koleksi1.png"
-import Koleksi2 from "@/assets/image/Koleksi1.png"
-import Koleksi3 from "@/assets/image/Koleksi1.png"
+import Koleksi2 from "@/assets/image/Koleksi2.png"
+import Koleksi3 from "@/assets/image/Koleksi3.png"
+import Koleksi4 from "@/assets/image/Koleksi4.png"
+import Koleksi5 from "@/assets/image/Koleksi5.png"
+import Koleksi6 from "@/assets/image/Koleksi6.png"
+import Koleksi7 from "@/assets/image/Koleksi7.png"
+import Koleksi8 from "@/assets/image/Koleksi8.png"
 
 const KoleksiCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -20,6 +25,11 @@ const KoleksiCarousel = () => {
     { id: 1, src: Koleksi1, alt: 'Koleksi 1' },
     { id: 2, src: Koleksi2, alt: 'Koleksi 2' },
     { id: 3, src: Koleksi3, alt: 'Koleksi 3' },
+    { id: 4, src: Koleksi4, alt: 'Koleksi 4' },
+    { id: 5, src: Koleksi5, alt: 'Koleksi 5' },
+    { id: 6, src: Koleksi6, alt: 'Koleksi 6' },
+    { id: 7, src: Koleksi7, alt: 'Koleksi 7' },
+    { id: 8, src: Koleksi8, alt: 'Koleksi 8' },
   ];
 
   const slides = image;
