@@ -24,14 +24,6 @@ export default function SectionKataMereka() {
                 <Image src={Background} alt="Testimoni Budaya" className="absulote top-0 w-full" />
                 <div className="absloute bottom-0 bg-[#B299801A] h-1/2"></div>
             </div>
-            <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="lg:hidden z-20">
-                <Image src={BestSeller} width={56} height={56} alt="Best Seller" />
-            </motion.div>
             <div
                 className="flex flex-col gap-4 z-20">
                 <motion.div
@@ -143,8 +135,8 @@ export default function SectionKataMereka() {
                                             </p>
                                         </div>
                                         <div className="flex flex-col gap-1">
-                                            <p className="text-xl">i*****e</p>
-                                            <p className="text-[#777777]">Shopee</p>
+                                            <p className="text-xl">{item.name}</p>
+                                            <p className="text-[#777777]">{item.shop}</p>
                                         </div>
                                     </motion.div>
                                 )}

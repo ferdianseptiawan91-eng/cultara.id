@@ -115,18 +115,6 @@ export default function SectionArtikel() {
                         </p>
                     </motion.div>
                 </div>
-                <motion.button
-                    initial="hidden"
-                    // animate="show"
-                    variants={{
-                        hidden: { opacity: 0, x: -40 },
-                        show: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.4, ease: "easeOut", delay: 1 }}
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                    className="hidden lg:flex gap-2.5 items-center w-fit text-white rounded-full font-semibold text-xl bg-primary px-6 py-3">Lihat Semua Koleksi <Image src={ArrowRight} alt="Cultara Shop" width={24} height={24} />
-                </motion.button>
             </div>
             <motion.div
                 variants={containerVariants}

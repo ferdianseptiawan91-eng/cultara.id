@@ -140,7 +140,7 @@ const KoleksiCarousel = () => {
 
   return (
     <div className="relative w-full max-w-[729px] mx-auto">
-      <button className='w-[100px] h-[100px] absolute bottom-21 lg:bottom-29 cursor-pointer z-30 left-2/6 lg:left-2/5 bg-[#F4A22BCC] border border-white p-2 rounded-full flex flex-col justify-center items-center transition-transform duration-300 hover:scale-110'>
+      <button className='w-[100px] h-[100px] absolute bottom-28 lg:bottom-22 cursor-pointer z-30 left-1/2 -translate-x-1/2 bg-[#F4A22BCC] border border-white p-2 rounded-full flex flex-col justify-center items-center transition-transform duration-300 hover:scale-110'>
         <MoveUpRight color='white' />
         <span className='text-xl text-white'>Shop</span>
       </button>

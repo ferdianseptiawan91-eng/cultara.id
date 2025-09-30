@@ -2,11 +2,12 @@ import Shopee from "@/assets/icons/shopee.svg"
 import TiktokShop from "@/assets/icons/tiktok-shop.svg"
 import Tokopedia from "@/assets/icons/tokopedia.svg"
 import Image from "next/image"
-import ArrowRight from "@/assets/icons/ArrowRight.svg"
+// import ArrowRight from "@/assets/icons/ArrowRight.svg"
 import GoodQuality from "@/assets/icons/good-quality.svg"
 import JagaBudaya from "@/assets/icons/jaga-budaya.svg"
 import { motion } from "motion/react"
 import SideBanner from "@/assets/image/SideBannerHome.png"
+import { ArrowRight } from "lucide-react"
 export default function SectionHome() {
     const iconShop = [
         { src: Shopee, alt: "Shopee" },
@@ -110,7 +111,7 @@ export default function SectionHome() {
                                 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
                                 key={index}
-                                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-10 h-10 p-1">
+                                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-14 h-14 p-1">
                                 <Image src={item.src} width={41} height={43} alt={item.alt} className="w-[41px] h-[41px] lg:w-10 lg:h-10" />
                             </motion.div>
                         ))}
@@ -123,7 +124,10 @@ export default function SectionHome() {
                             show: { opacity: 1, y: 0 },
                         }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="flex gap-2.5 cursor-pointer items-center w-fit text-white rounded-full font-semibold text-xl bg-primary px-6 py-3">Ikuti Perjalanan Kami <Image src={ArrowRight} alt="Cultara Shop" width={24} height={24} />
+                        className="flex gap-2.5 cursor-pointer items-center w-fit text-primary rounded-full font-semibold text-xl border border-primary px-6 py-3">
+                        Ikuti Perjalanan Kami
+                        {/* <Image src={ArrowRight} alt="Cultara Shop" width={24} height={24} /> */}
+                        <ArrowRight width={24} height={24} className="text-primary" />
                     </motion.a>
                 </motion.div>
             </div>
