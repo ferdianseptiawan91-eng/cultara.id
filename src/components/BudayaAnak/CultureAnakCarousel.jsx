@@ -3,17 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { MoveLeft, MoveRight } from 'lucide-react';
-import Budaya1 from "@/assets/image/budaya1.png"
-import Budaya2 from "@/assets/image/budaya2.png"
-import Budaya3 from "@/assets/image/budaya3.png"
-import Budaya4 from "@/assets/image/budaya4.png"
-import Budaya5 from "@/assets/image/budaya5.png"
-import Budaya6 from "@/assets/image/budaya6.png"
-import Budaya7 from "@/assets/image/budaya7.png"
-import Budaya8 from "@/assets/image/budaya8.png"
-import Budaya9 from "@/assets/image/budaya9.png"
-import Budaya10 from "@/assets/image/budaya10.png"
-import Budaya11 from "@/assets/image/budaya11.png"
+import Budaya1 from "@/assets/image/AnakDesktop1.png"
+import Budaya2 from "@/assets/image/AnakDesktop2.png"
+import Budaya3 from "@/assets/image/AnakDesktop3.png"
+import Budaya4 from "@/assets/image/AnakDesktop4.png"
 import Budaya1Mobile from "@/assets/image/AnakMobile1.png"
 import Budaya2Mobile from "@/assets/image/AnakMobile2.png"
 import Budaya3Mobile from "@/assets/image/AnakMobile3.png"
