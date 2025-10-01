@@ -1,6 +1,7 @@
 "use client"
 import SectionArtikel from "@/components/Artikel/page";
 import SectionBudaya from "@/components/budaya/page";
+import SectionJagaBudayaAnak from "@/components/BudayaAnak/page";
 import SectionBudayaVersimu from "@/components/BudayaVersimu/page";
 import CarakaUtamaSection from "@/components/CarakaUtama/page";
 import SectionHome from "@/components/Home/page";
@@ -13,6 +14,9 @@ export default function Home() {
     <div className="w-full">
       <section id="home">
         <SectionHome />
+      </section>
+      <section>
+        <SectionJagaBudayaAnak />
       </section>
       <section id="artikel-terlaris">
         <SectionArtikel />

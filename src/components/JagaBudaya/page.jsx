@@ -5,9 +5,11 @@ import Image from "next/image"
 import Banner from "@/assets/image/BannerJagaBudaya.png"
 import { useEffect, useRef, useState } from "react"
 import PopUpShop from "../General/popup-shop"
+import ShopModal from "../General/shop-modal"
 export default function SectionJagaBudaya() {
     const [showPopUp, setShowPopUp] = useState(false)
     const popupRef = useRef(null);
+    const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -51,7 +53,7 @@ export default function SectionJagaBudaya() {
                 </div>
 
                 {/* ✅ Button tanpa animasi */}
-                <div className="relative lg:min-w-[172px] min-h-[52px]">
+                <div className="relative hidden lg:block lg:min-w-[172px] min-h-[52px]">
                     <AnimatePresence>
                         {showPopUp && (
                             <motion.div
@@ -83,6 +85,21 @@ export default function SectionJagaBudaya() {
                             <ArrowRight width={24} height={24} className="text-white" />
                         </motion.button>
                     )}
+                </div>
+                <div className="relative lg:hidden lg:min-w-[172px] min-h-[52px]">
+                    <motion.button
+                        key="button"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 40 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        onClick={() => setOpenModal(true)}
+                        className="flex gap-2.5 cursor-pointer items-center w-fit justify-center text-white rounded-full font-semibold text-xl bg-primary px-6 py-3"
+                    >
+                        Show Now
+                        <ArrowRight width={24} height={24} className="text-white" />
+                    </motion.button>
+                    <ShopModal onClose={() => setOpenModal(false)} open={openModal} />
                 </div>
                 {/* <button
                     className="flex gap-2.5 items-center h-fit w-fit justify-center text-white font-semibold rounded-full text-xl bg-primary px-6 py-3"
