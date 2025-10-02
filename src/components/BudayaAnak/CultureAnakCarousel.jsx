@@ -20,24 +20,6 @@ const CultureAnakCarousel = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef(null);
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.4
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: -50 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
-  };
 
   // Sample data - replace with your actual data
   const image = [
@@ -174,30 +156,79 @@ const CultureAnakCarousel = () => {
       <div className="relative overflow-hidden">
 
         {/* Desktop version - center focused */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          animate={{ x: -currentSlide * (268 + 15) }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="lg:flex justify-around gap-2 lg:gap-[18px] overflow-x-auto hidden">
-          {image.map((item, idx) => (
-            <motion.div
-              variants={cardVariants}
-              key={idx}
-              className="rounded-2xl flex-shrink-0 flex flex-col gap-4 md:min-w-0"
-            >
-              <Image
-                src={item.src}
-                alt={`Produk Anak ${idx + 1}`}
-                width={166}
-                height={76}
-                className="min-w-[166px] lg:min-w-[268px] h-auto"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        <div
+          ref={carouselRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onDragStart={(e) => e.preventDefault()}
+          className={`hidden lg:block relative h-[360px] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
+          {/* Slides container with smooth transitions */}
+          <div className="relative w-full h-full flex gap-2 items-center justify-start">
+            {/* Render all slides with proper positioning */}
+            {image.map((img, index) => {
+              const position = (index - currentSlide + image.length) % image.length;
+              let translateX = 0;
+              let scale = 1;
+              let opacity = 1;
+              let zIndex = 10;
+
+              if (position === 0) {
+                // Current slide (center)
+                translateX = isDragging ? dragOffset : 0;
+                scale = 1;
+                zIndex = 20;
+              } else if (position === 1 || position === image.length - 1) {
+                // Adjacent slides (left and right)
+                const baseTranslateX = position === 1 ? 290 : 580;
+                translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
+                scale = 1;
+                zIndex = 10;
+              } else {
+                // Hidden slides
+                const baseTranslateX = position < image.length / 2 ? 600 : -600;
+                translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
+                scale = 1;
+                opacity = 0;
+                zIndex = 5;
+              }
+
+              return (
+                <div
+                  key={img.id}
+                  className="flex gap-6 items-center pl-8 transition-transform duration-500 ease-in-out h-full"
+                  style={{
+              transform: `translateX(${isDragging ? 
+                -currentSlide * 290 + dragOffset : 
+                -currentSlide * 290}px)`
+            }}
+                  onClick={() => {
+                    if (isDragging || Math.abs(dragOffset) > 5) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      return;
+                    }
+                    if (position === 1) nextSlide();
+                    else if (position === image.length - 1) prevSlide();
+                  }}
+                >
+                  <div className={`relative w-[268px] h-[351px] overflow-hidden rounded-2xl ${index > currentSlide ? 'cursor-pointer hover:opacity-80' : ''}`}>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        className="object-contain rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Mobile version - single slide with normal slide transition */}
         <div

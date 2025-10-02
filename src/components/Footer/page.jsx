@@ -13,11 +13,17 @@ import SizeChartModal from "../General/size-chart-modal";
 export default function Footer() {
   const [openModal, setOpenModal] = useState(false)
   const iconShop = [
-    { src: Instagram, alt: "Instagram" },
-    { src: Tiktok, alt: "Tiktok" },
-    { src: Shopee, alt: "Shopee" },
-    { src: TiktokShop, alt: "Tiktok Shop" },
-    { src: Tokopedia, alt: "Tokopedia" },
+    { src: Instagram, alt: "Instagram", link: "https://www.instagram.com/cultaraofficial" },
+    { src: Tiktok, alt: "Tiktok", link: "https://www.tiktok.com/@cultara.official" },
+    { src: Shopee, alt: "Shopee", link: "https://shopee.co.id/cultaraofficial" },
+    { src: TiktokShop, alt: "Tiktok Shop", link: "https://shopee.co.id/cultaraofficial" },
+    { src: Tokopedia, alt: "Tokopedia", link: "https://www.tokopedia.com/cultaraid" },
+  ];
+  const menuItems = [
+    { href: "#artikel-terlaris", label: "Artikel Terlaris" },
+    { href: "#jejak-budaya", label: "Jejak Budaya" },
+    { href: "#kata-mereka", label: "Kata Mereka" },
+    { href: "#koleksi", label: "Koleksi" },
   ];
   return (
     <motion.footer
@@ -40,7 +46,8 @@ export default function Footer() {
             {iconShop.map((item, index) => (
               <div
                 key={index}
-                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-10 h-10"
+                onClick={() => { window.open(item.link, "_blank") }}
+                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-10 h-10 cursor-pointer"
               >
                 <Image
                   src={item.src}
@@ -69,10 +76,29 @@ export default function Footer() {
           <div className="flex flex-col gap-y-6">
             <p className="font-bold font-[--font-libre] text-2xl">Navigasi</p>
             <ul className="text-lg text-[#555555] flex flex-col gap-y-2">
-              <li>Artikel Terlaris</li>
+              {menuItems.map((item, index) => {
+                const section = item.href.replace("#", "");
+                return (
+                  <li key={index}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const element = document.getElementById(section)
+                      if (element) {
+                        element.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                        })
+                      }
+                    }}
+                    className="cursor-pointer"
+                  >{item.label}</li>
+                )
+              }
+              )}
+              {/* <li>Artikel Terlaris</li>
               <li>Jejak Budaya</li>
               <li>Kata Mereka</li>
-              <li>Custom Artikel</li>
+              <li>Custom Artikel</li> */}
             </ul>
           </div>
           <div className="flex flex-col gap-y-6">
