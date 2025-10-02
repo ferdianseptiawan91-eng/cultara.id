@@ -11,6 +11,7 @@ import Budaya1Mobile from "@/assets/image/AnakMobile1.png"
 import Budaya2Mobile from "@/assets/image/AnakMobile2.png"
 import Budaya3Mobile from "@/assets/image/AnakMobile3.png"
 import Budaya4Mobile from "@/assets/image/AnakMobile4.png"
+import { motion } from "motion/react"
 
 const CultureAnakCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,6 +20,24 @@ const CultureAnakCarousel = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef(null);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, x: -50 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeInOut" },
+    },
+  };
 
   // Sample data - replace with your actual data
   const image = [
@@ -29,11 +48,11 @@ const CultureAnakCarousel = () => {
   ];
 
   const imageMobile = [
-  { id: 1, src: Budaya1Mobile, alt: "Budaya 1 Mobile" },
-  { id: 2, src: Budaya2Mobile, alt: "Budaya 2 Mobile" },
-  { id: 3, src: Budaya3Mobile, alt: "Budaya 3 Mobile" },
-  { id: 4, src: Budaya4Mobile, alt: "Budaya 4 Mobile" },
-];
+    { id: 1, src: Budaya1Mobile, alt: "Budaya 1 Mobile" },
+    { id: 2, src: Budaya2Mobile, alt: "Budaya 2 Mobile" },
+    { id: 3, src: Budaya3Mobile, alt: "Budaya 3 Mobile" },
+    { id: 4, src: Budaya4Mobile, alt: "Budaya 4 Mobile" },
+  ];
 
   const slides = image;
 
@@ -155,84 +174,30 @@ const CultureAnakCarousel = () => {
       <div className="relative overflow-hidden">
 
         {/* Desktop version - center focused */}
-        <div
-          ref={carouselRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onDragStart={(e) => e.preventDefault()}
-          className={`hidden lg:block relative h-[320px] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
-          {/* Slides container with smooth transitions */}
-          <div className="relative w-full h-full flex gap-2 items-center justify-center">
-            {/* Render all slides with proper positioning */}
-            {image.map((img, index) => {
-              const position = (index - currentSlide + image.length) % image.length;
-              let translateX = 0;
-              let scale = 0.75;
-              let opacity = 1;
-              let zIndex = 10;
-
-              if (position === 0) {
-                // Current slide (center)
-                translateX = isDragging ? dragOffset : 0;
-                scale = 1;
-                zIndex = 20;
-              } else if (position === 1 || position === image.length - 1) {
-                // Adjacent slides (left and right)
-                const baseTranslateX = position === 1 ? 110 : -110;
-                translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
-                scale = 1;
-                zIndex = 10;
-              } else {
-                // Hidden slides
-                const baseTranslateX = position < image.length / 2 ? 600 : -600;
-                translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
-                scale = 0.5;
-                opacity = 0;
-                zIndex = 5;
-              }
-
-              return (
-                <div
-                  key={img.id}
-                  className={`absolute transition-all ease-in-out 
-                    ${position === 1 || position === image.length - 1 ? 'hover:opacity-80 cursor-pointer' : ''}
-                    ${position === 0 ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : ''}`}
-                  style={{
-                    transform: `translateX(${translateX}px) scale(${scale})`,
-                    opacity,
-                    zIndex,
-                    // transition: 'all',
-                    // animationDuration: 300
-
-                  }}
-                  onClick={() => {
-                    if (isDragging || Math.abs(dragOffset) > 5) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      return;
-                    }
-                    if (position === 1) nextSlide();
-                    else if (position === image.length - 1) prevSlide();
-                  }}
-                >
-                  <div className={`relative transition-all duration-300 ${position === 0 ? 'w-[571px] h-[320px]' : 'w-[571px] h-[280px]'} overflow-hidden cursor-pointer hover:cursor-pointer`}>
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-contain rounded-2xl"
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          animate={{ x: -currentSlide * (268 + 15) }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="lg:flex justify-around gap-2 lg:gap-[18px] overflow-x-auto hidden">
+          {image.map((item, idx) => (
+            <motion.div
+              variants={cardVariants}
+              key={idx}
+              className="rounded-2xl flex-shrink-0 flex flex-col gap-4 md:min-w-0"
+            >
+              <Image
+                src={item.src}
+                alt={`Produk Anak ${idx + 1}`}
+                width={166}
+                height={76}
+                className="min-w-[166px] lg:min-w-[268px] h-auto"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* Mobile version - single slide with normal slide transition */}
         <div
@@ -290,8 +255,8 @@ const CultureAnakCarousel = () => {
                 key={realIndex}
                 onClick={() => goToSlide(realIndex)}
                 className={`relative overflow-hidden rounded-full transition-all duration-300 cursor-pointer ${realIndex === currentSlide
-                    ? "w-4 h-2 bg-primary"
-                    : "w-3 h-2 bg-gray-400/60 hover:bg-gray-400/80"
+                  ? "w-4 h-2 bg-primary"
+                  : "w-3 h-2 bg-gray-400/60 hover:bg-gray-400/80"
                   }`}
                 aria-label={`Go to slide ${realIndex + 1}`}
               >
