@@ -38,10 +38,19 @@ export default function SectionJagaBudayaAnak() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="w-full"
+                className="hidden lg:block lg:w-[760px] lg:relative"
             >
                 {/* <CultureAnakCarousel /> */}
                 <ImageSlider />
+            </motion.div>
+            <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="lg:hidden lg:w-[760px] "
+            >
+                <CultureAnakCarousel />
             </motion.div>
             {/* <motion.div
                 variants={containerVariants}

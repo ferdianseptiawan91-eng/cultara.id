@@ -3,15 +3,15 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { MoveLeft, MoveRight } from 'lucide-react';
-import Budaya1 from "@/assets/image/AnakDesktop1.png"
-import Budaya2 from "@/assets/image/AnakDesktop2.png"
-import Budaya3 from "@/assets/image/AnakDesktop3.png"
-import Budaya4 from "@/assets/image/AnakDesktop4.png"
-import Budaya1Mobile from "@/assets/image/AnakMobile1.png"
-import Budaya2Mobile from "@/assets/image/AnakMobile2.png"
-import Budaya3Mobile from "@/assets/image/AnakMobile3.png"
-import Budaya4Mobile from "@/assets/image/AnakMobile4.png"
-import { motion } from "motion/react"
+import Budaya1 from "@/assets/image/budaya1.png"
+import Budaya2 from "@/assets/image/budaya2.png"
+import Budaya3 from "@/assets/image/budaya3.png"
+import Budaya4 from "@/assets/image/budaya4.png"
+import Budaya1Mobile from "@/assets/image/AnakDesktop1.png"
+import Budaya2Mobile from "@/assets/image/AnakDesktop2.png"
+import Budaya3Mobile from "@/assets/image/AnakDesktop3.png"
+import Budaya4Mobile from "@/assets/image/AnakDesktop4.png"
+
 
 const CultureAnakCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -30,10 +30,10 @@ const CultureAnakCarousel = () => {
   ];
 
   const imageMobile = [
-    { id: 1, src: Budaya1Mobile, alt: "Budaya 1 Mobile" },
-    { id: 2, src: Budaya2Mobile, alt: "Budaya 2 Mobile" },
-    { id: 3, src: Budaya3Mobile, alt: "Budaya 3 Mobile" },
-    { id: 4, src: Budaya4Mobile, alt: "Budaya 4 Mobile" },
+    { id: 1, src: Budaya1Mobile, alt: "Budaya 1" },
+    { id: 2, src: Budaya2Mobile, alt: "Budaya 2" },
+    { id: 3, src: Budaya3Mobile, alt: "Budaya 3" },
+    { id: 4, src: Budaya4Mobile, alt: "Budaya 4" },
   ];
 
   const slides = image;
@@ -151,7 +151,7 @@ const CultureAnakCarousel = () => {
   const visibleDots = image.slice(start, end);
 
   return (
-    <div className="relative w-full mx-auto lg:py-12 px-4">
+    <div className="relative w-full max-w-[429px] mx-auto lg:py-12 px-4">
       {/* Main carousel container */}
       <div className="relative overflow-hidden">
 
@@ -164,14 +164,14 @@ const CultureAnakCarousel = () => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onDragStart={(e) => e.preventDefault()}
-          className={`hidden lg:block relative h-[360px] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
+          className={`hidden lg:block relative h-[320px] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
           {/* Slides container with smooth transitions */}
-          <div className="relative w-full h-full flex gap-2 items-center justify-start">
+          <div className="relative w-full h-full flex gap-2 items-center justify-center">
             {/* Render all slides with proper positioning */}
             {image.map((img, index) => {
               const position = (index - currentSlide + image.length) % image.length;
               let translateX = 0;
-              let scale = 1;
+              let scale = 0.75;
               let opacity = 1;
               let zIndex = 10;
 
@@ -182,7 +182,7 @@ const CultureAnakCarousel = () => {
                 zIndex = 20;
               } else if (position === 1 || position === image.length - 1) {
                 // Adjacent slides (left and right)
-                const baseTranslateX = position === 1 ? 290 : 580;
+                const baseTranslateX = position === 1 ? 110 : -110;
                 translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
                 scale = 1;
                 zIndex = 10;
@@ -190,7 +190,7 @@ const CultureAnakCarousel = () => {
                 // Hidden slides
                 const baseTranslateX = position < image.length / 2 ? 600 : -600;
                 translateX = isDragging ? baseTranslateX + dragOffset : baseTranslateX;
-                scale = 1;
+                scale = 0.5;
                 opacity = 0;
                 zIndex = 5;
               }
@@ -198,12 +198,17 @@ const CultureAnakCarousel = () => {
               return (
                 <div
                   key={img.id}
-                  className="flex gap-6 items-center pl-8 transition-transform duration-500 ease-in-out h-full"
+                  className={`absolute transition-all ease-in-out 
+                    ${position === 1 || position === image.length - 1 ? 'hover:opacity-80 cursor-pointer' : ''}
+                    ${position === 0 ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : ''}`}
                   style={{
-              transform: `translateX(${isDragging ? 
-                -currentSlide * 290 + dragOffset : 
-                -currentSlide * 290}px)`
-            }}
+                    transform: `translateX(${translateX}px) scale(${scale})`,
+                    opacity,
+                    zIndex,
+                    // transition: 'all',
+                    // animationDuration: 300
+
+                  }}
                   onClick={() => {
                     if (isDragging || Math.abs(dragOffset) > 5) {
                       e.preventDefault();
@@ -214,7 +219,7 @@ const CultureAnakCarousel = () => {
                     else if (position === image.length - 1) prevSlide();
                   }}
                 >
-                  <div className={`relative w-[268px] h-[351px] overflow-hidden rounded-2xl ${index > currentSlide ? 'cursor-pointer hover:opacity-80' : ''}`}>
+                  <div className={`relative transition-all duration-300 ${position === 0 ? 'w-[571px] h-[320px]' : 'w-[571px] h-[280px]'} overflow-hidden cursor-pointer hover:cursor-pointer`}>
                     <div className="w-full h-full flex items-center justify-center">
                       <Image
                         src={img.src}
@@ -245,10 +250,10 @@ const CultureAnakCarousel = () => {
             }}
           >
             {imageMobile.map((img, index) => (
-              <div key={img.id} className="w-full relative">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              <div key={img.id} className="w-full flex-shrink-0 relative">
+                <div className="relative w-full h-full overflow-hidden">
                   {/* Image */}
-                  <div className="w-[380px] h-[350px] flex items-center justify-center">
+                  <div className="w-[380px] h-[320px] flex items-center justify-center">
                     {/* <span className="text-gray-500 text-lg font-medium">{img.src}</span> */}
                     {/* Replace with actual Image component when you have the images imported */}
                     <Image

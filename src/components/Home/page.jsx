@@ -10,9 +10,9 @@ import SideBanner from "@/assets/image/SideBannerHome.png"
 import { ArrowRight } from "lucide-react"
 export default function SectionHome() {
     const iconShop = [
-        { src: Shopee, alt: "Shopee" },
-        { src: TiktokShop, alt: "Tiktok Shop" },
-        { src: Tokopedia, alt: "Tokopedia" },
+        { src: Shopee, alt: "Shopee", link: "https://shopee.co.id/cultaraofficial" },
+        { src: TiktokShop, alt: "Tiktok Shop", link: "https://www.tiktok.com/@cultara.official" },
+        { src: Tokopedia, alt: "Tokopedia", link: "https://www.tokopedia.com/cultaraid" },
     ];
     const container = {
         hidden: {},
@@ -111,7 +111,8 @@ export default function SectionHome() {
                                 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
                                 key={index}
-                                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-14 h-14 p-1">
+                                onClick={() => window.open(item.link, "_blank")}
+                                className="rounded-full bg-[#FFF2DF] flex justify-center items-center w-14 h-14 p-1 cursor-pointer">
                                 <Image src={item.src} width={41} height={43} alt={item.alt} className="w-[41px] h-[41px] lg:w-10 lg:h-10" />
                             </motion.div>
                         ))}
