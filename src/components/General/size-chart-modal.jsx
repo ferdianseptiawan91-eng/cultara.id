@@ -6,7 +6,7 @@ import SizeChild from "@/assets/image/SizeChart.png"
 import SizeDewasa from "@/assets/image/SizeChartDewasa.png"
 
 export default function SizeChartModal({ open, onClose }) {
-  const [activeTab, setActiveTab] = useState("anak");
+  const [activeTab, setActiveTab] = useState("dewasa");
   useEffect(() => {
       if (open) {
         const original = document.body.style.overflow;

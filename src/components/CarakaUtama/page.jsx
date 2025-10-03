@@ -92,7 +92,7 @@ export default function CarakaUtamaSection() {
                         menjalani perjalanan panjang dalam memahami, menghargai, dan menjaga
                         kekayaan budaya Nusantara.
                     </p>
-                    <button className="flex gap-2.5 items-center w-fit text-white rounded-full font-semibold text-xl bg-primary px-6 py-3">
+                    <button onClick={() => window.open('https://www.instagram.com/cultaraofficial', '_blank')} className="flex gap-2.5 items-center cursor-pointer w-fit text-white rounded-full font-semibold text-xl bg-primary px-6 py-3">
                         Ikuti Jejak Caraka{" "}
                         <Image
                             src={ArrowRight}

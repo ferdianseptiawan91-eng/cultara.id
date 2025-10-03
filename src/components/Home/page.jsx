@@ -125,7 +125,7 @@ export default function SectionHome() {
                             show: { opacity: 1, y: 0 },
                         }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="flex gap-2.5 cursor-pointer items-center w-fit text-primary rounded-full font-semibold text-xl border border-primary px-6 py-3">
+                        className="flex mb-6 lg:mb-0 gap-2.5 cursor-pointer items-center w-fit text-primary rounded-full font-semibold text-xl border border-primary px-6 py-3">
                         Ikuti Perjalanan Kami
                         {/* <Image src={ArrowRight} alt="Cultara Shop" width={24} height={24} /> */}
                         <ArrowRight width={24} height={24} className="text-primary" />

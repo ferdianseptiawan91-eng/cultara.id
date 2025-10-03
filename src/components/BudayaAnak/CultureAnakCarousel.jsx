@@ -276,7 +276,7 @@ const CultureAnakCarousel = () => {
         {/* Previous button */}
         <button
           onClick={prevSlide}
-          className="bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-4 transition-all duration-300 cursor-pointer border border-white/20 hover:scale-110 text-gray-700 hover:text-gray-900"
+          className="transition-all hover:scale-110 cursor-pointer"
           aria-label="Previous slide"
         >
           <MoveLeft className="w-6 h-6 text-[#62748E]" />
@@ -307,7 +307,7 @@ const CultureAnakCarousel = () => {
         {/* Next button */}
         <button
           onClick={nextSlide}
-          className="bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-4 transition-all duration-300 cursor-pointer border border-white/20 hover:scale-110 text-gray-700 hover:text-gray-900"
+          className="transition-all hover:scale-110 cursor-pointer"
           aria-label="Next slide"
         >
           <MoveRight className="w-6 h-6 text-[#62748E]" />
