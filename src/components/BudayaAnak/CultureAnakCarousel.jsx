@@ -7,10 +7,10 @@ import Budaya1 from "@/assets/image/budaya1.png"
 import Budaya2 from "@/assets/image/budaya2.png"
 import Budaya3 from "@/assets/image/budaya3.png"
 import Budaya4 from "@/assets/image/budaya4.png"
-import Budaya1Mobile from "@/assets/image/AnakDesktop1.png"
-import Budaya2Mobile from "@/assets/image/AnakDesktop2.png"
-import Budaya3Mobile from "@/assets/image/AnakDesktop3.png"
-import Budaya4Mobile from "@/assets/image/AnakDesktop4.png"
+import Budaya1Mobile from "@/assets/image/AnakMobile1.png"
+import Budaya2Mobile from "@/assets/image/AnakMobile2.png"
+import Budaya3Mobile from "@/assets/image/AnakMobile3.png"
+import Budaya4Mobile from "@/assets/image/AnakMobile4.png"
 
 
 const CultureAnakCarousel = () => {

@@ -104,8 +104,8 @@ export default function Footer() {
           <div className="flex flex-col gap-y-6">
             <p className="font-bold font-[--font-libre] text-2xl">Information</p>
             <ul className="text-lg text-[#555555] flex flex-col gap-y-2">
-              <li onClick={() => setOpenModal(true)}>Size Chart</li>
-              <li>Saran Budaya</li>
+              <li className="cursor-pointer" onClick={() => setOpenModal(true)}>Size Chart</li>
+              <li className="cursor-pointer" onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLScDCKtm9bd4jK-o2l2zD9xssdqMUzJAb2m2CAXzrm4KWzoWaw/viewform?usp=sharing&ouid=109978680847054998586", "_blank")}>Saran Budaya</li>
             </ul>
           </div>
         </div>
