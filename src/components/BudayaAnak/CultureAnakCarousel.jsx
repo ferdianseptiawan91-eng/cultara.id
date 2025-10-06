@@ -151,7 +151,7 @@ const CultureAnakCarousel = () => {
   const visibleDots = image.slice(start, end);
 
   return (
-    <div className="relative w-full max-w-[429px] mx-auto lg:py-12 px-4">
+    <div className="relative w-full">
       {/* Main carousel container */}
       <div className="relative overflow-hidden">
 
@@ -242,7 +242,7 @@ const CultureAnakCarousel = () => {
           onTouchEnd={handleTouchEnd}
           className="md:hidden relative overflow-hidden rounded-2xl">
           <div
-            className="flex transition-transform duration-500 ease-in-out h-full"
+            className="flex items-center transition-transform duration-500 ease-in-out h-full"
             style={{
               transform: `translateX(${isDragging ?
                 -currentSlide * 100 + (dragOffset / window.innerWidth) * 100 :
@@ -259,7 +259,7 @@ const CultureAnakCarousel = () => {
                     <Image
                       src={img.src}
                       alt={img.alt}
-                      fill
+                      width={350}
                       className="object-contain"
                     />
                   </div>

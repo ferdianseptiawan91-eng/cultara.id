@@ -21,11 +21,10 @@ const KataMerekaCarousel = () => {
 
   // Sample data - replace with your actual data
   const image = [
-    { id: 1, src: KataMereka1, alt: 'Kata Mereka 1' },
-    { id: 2, src: KataMereka2, alt: 'Kata Mereka 2' },
-    { id: 3, src: KataMereka3, alt: 'Kata Mereka 3' },
-  ];
-
+    { id: 1, src: KataMereka1, alt: "Testimoni 1", content: "Checkout karena iseng tengah malem haha. Eh taunya bagus, mantap seller👌 Bahannya adem, desainnya oke. Sukses minn😇😇", name: "i*****e", shop: "Shopee" },
+    { id: 2, src: KataMereka2, alt: "Testimoni 2", content: "Ukurannya pas Tinggi badan 160 - 170 cm Berat badan 60 - 70 kg. bahannya bagus, adhem, dan semoga awet. dapathadiah pin dan stiker. ... rekomenadasilah... ntr bisa beli lagi. makasih", name: "Iwa", shop: "Tokopedia" },
+    { id: 3, src: KataMereka3, alt: "Testimoni 3", content: "Mantap..Mendarat dengan cepat.. Dikasih bonus stiker dan pin, ga nyangka.. bahan halus sesuai deskripsi, puas pokoknya.. rekomendasi bgtt👍❤️", name: "Ismail", shop: "Tiktok" }
+  ]
   const slides = image;
 
   // Auto-play functionality
@@ -238,15 +237,15 @@ const KataMerekaCarousel = () => {
                   {/* Image */}
                   <div className="w-full flex items-center justify-center">
                     <div className="border border-[#B29980] flex">
-                      <Image src={img.src} width={105} alt="Testimoni" className="w-full" />
+                      <Image src={img.src} width={105} alt="Testimoni" className="min-w-[105px] object-cover" />
                       <div className="py-5 px-4 flex flex-col gap-6">
                         <div className="flex flex-col gap-2">
                           <Image src={Quote} alt="Quote" />
-                          <p className="text-xl text-[#555555]">Checkout karena iseng tengah malem haha. Eh taunya bagus, mantap seller👌 Bahannya adem, desainnya oke. Sukses minn😇😇</p>
+                          <p className="text-xl text-[#555555]">{img.content}</p>
                         </div>
                         <div className="flex flex-col gap-1">
-                          <p className="text-xl">i*****e</p>
-                          <p className="text-[#777777]">Shopee</p>
+                          <p className="text-xl">{img.name}</p>
+                          <p className="text-[#777777]">{img.shop}</p>
                         </div>
                       </div>
                     </div>

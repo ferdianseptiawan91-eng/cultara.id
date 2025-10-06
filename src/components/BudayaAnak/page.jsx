@@ -49,7 +49,7 @@ export default function SectionJagaBudayaAnak() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="lg:hidden lg:w-[760px] "
+                className="lg:hidden w-full"
             >
                 <CultureAnakCarousel />
             </motion.div>

@@ -278,7 +278,7 @@ const CultureCarousel = () => {
           >
             {imageMobile.map((img, index) => (
               <div key={img.id} className="w-full flex-shrink-0 relative">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden">
                   {/* Image */}
                   <div className="w-[380px] h-[320px] flex items-center justify-center">
                     {/* <span className="text-gray-500 text-lg font-medium">{img.src}</span> */}
