@@ -126,11 +126,11 @@ export default function SectionKataMereka() {
                                             },
                                             opacity: 0
                                         }}
-                                        className="bg-white py-5 px-4 flex flex-col gap-6 min-w-0 max-w-[300px]"
+                                        className="bg-white py-5 px-4 flex flex-col justify-center gap-6 min-w-0 max-w-[300px]"
                                     >
                                         <div className="flex flex-col gap-2">
                                             <Image src={Quote} alt="Quote" width={40} height={40} />
-                                            <p className="text-xl text-[#555555]">
+                                            <p className="text-xl text-[#555555] leading-6">
                                                 {item.content}
                                             </p>
                                         </div>
