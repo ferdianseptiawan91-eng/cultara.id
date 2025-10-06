@@ -97,7 +97,7 @@ export default function ImageSlider() {
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`h-2.5 rounded-full transition-all ${index === currentIndex
-                                ? 'w-10 bg-orange-500'
+                                ? 'w-10 bg-primary'
                                 : 'w-2.5 bg-gray-500 hover:bg-gray-400'
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}

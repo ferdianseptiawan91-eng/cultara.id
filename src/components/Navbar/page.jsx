@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import Logo from "@/assets/icons/Logo.svg"
+import Logo from "@/assets/icons/Logo.png"
 import Hamburger from "@/assets/icons/Hamburger.svg"
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -55,10 +55,10 @@ export default function Navbar() {
             <div className="flex gap-1.5 items-center">
                 <Image
                     src={Logo}
-                    width={40}
-                    height={40}
+                    width={60}
+                    height={60}
                     alt="Cultara Logo"
-                    className="min-w-10 min-h-10"
+                    className="object-cover"
                 />
                 <p className="text-2xl font-[--font-libre] font-semibold">Cultara.id</p>
             </div>
