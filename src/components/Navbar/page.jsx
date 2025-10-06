@@ -58,7 +58,7 @@ export default function Navbar() {
                     width={60}
                     height={60}
                     alt="Cultara Logo"
-                    className="object-cover"
+                    className="object-cover w-10 h-10 lg:w-[60px] lg:h-[60px]"
                 />
                 <p className="text-2xl font-[--font-libre] font-semibold">Cultara.id</p>
             </div>
