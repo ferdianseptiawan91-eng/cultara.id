@@ -253,13 +253,13 @@ const CultureAnakCarousel = () => {
               <div key={img.id} className="w-full flex-shrink-0 relative">
                 <div className="relative w-full h-full overflow-hidden">
                   {/* Image */}
-                  <div className="w-[380px] h-[320px] flex items-center justify-center">
+                  <div className="w-[370px] h-[320px] flex items-center justify-center">
                     {/* <span className="text-gray-500 text-lg font-medium">{img.src}</span> */}
                     {/* Replace with actual Image component when you have the images imported */}
                     <Image
                       src={img.src}
                       alt={img.alt}
-                      width={350}
+                      fill
                       className="object-contain"
                     />
                   </div>
