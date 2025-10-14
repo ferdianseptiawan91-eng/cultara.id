@@ -19,7 +19,21 @@ export default function SectionArtikel() {
         { src: Tokopedia, alt: "Tokopedia" },
     ];
     const imageCard = [Artikel1, Artikel2, Artikel3, Artikel4]
+    const image = [
+        { img: Artikel1, label: "Urip iku Urup" },
+        { img: Artikel1, label: "Gatot Kaca" },
+        { img: Artikel1, label: "Adigang Adigung Adiguna" },
+        { img: Artikel1, label: "Hanoman" }
+    ]
     const [showIcon, setShowIcon] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(null);
+
+    const handleToggleTooltip = (index) => {
+        // Hanya aktif di mobile (layar kecil)
+        if (window.innerWidth < 1024) {
+            setShowTooltip(prev => (prev === index ? null : index));
+        }
+    };
 
     useEffect(() => {
         const timer = setTimeout(() => setShowIcon(true), 400);
@@ -123,14 +137,14 @@ export default function SectionArtikel() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
                 className="flex justify-around gap-2 lg:gap-[18px] overflow-x-auto md:overflow-x-visible hide-scrollbar">
-                {[1, 2, 3, 4].map((_, idx) => (
+                {image.map((item, idx) => (
                     <motion.div
                         variants={cardVariants}
                         key={idx}
-                        className="rounded-2xl p-2 lg:p-4 flex-shrink-0 flex flex-col gap-4 bg-white border border-[#DDDDDD] md:min-w-0"
+                        className="rounded-2xl p-2 lg:p-4 flex-shrink-0 flex flex-col gap-4 bg-white border border-[#DDDDDD] md:min-w-0 cursor-pointer"
                     >
                         <Image
-                            src={imageCard[idx]}
+                            src={item.img}
                             alt={`Produk ${idx + 1}`}
                             width={166}
                             height={76}
@@ -143,7 +157,27 @@ export default function SectionArtikel() {
                                         <Image src={item} key={index} width={16} height={16} alt="icon" />
                                     ))}
                                 </div>
-                                <p className="font-semibold lg:font-medium tracking-wider lg:text-xl">Gatot Kaca</p>
+                                {/* <p className="font-semibold lg:font-medium tracking-wider lg:text-xl">{item.label.length > 13 ? item.label.substring(0, 10) + "..." : item.label}</p> */}
+                                <div
+                                    className="relative group inline-block cursor-pointer"
+                                    onClick={() => handleToggleTooltip(idx)}
+                                >
+                                    <p
+                                        className="font-semibold lg:font-medium tracking-wider lg:text-xl"
+                                        title={item.label}
+                                    >
+                                        {item.label.length > 13 ? item.label.substring(0, 13) + "..." : item.label}
+                                    </p>
+
+                                    {/* Tooltip */}
+                                    <span
+                                        className={`absolute left-0 bottom-full mb-2 bg-gray-800 text-white text-sm rounded-lg px-2 py-1 whitespace-nowrap z-10 transition-opacity duration-200
+          ${showTooltip === idx ? "block" : "hidden"} 
+          lg:group-hover:block`}
+                                    >
+                                        {item.label}
+                                    </span>
+                                </div>
                             </div>
                             <div className="flex gap-1">
                                 {iconShop.map((item, index) => (
