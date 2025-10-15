@@ -21,9 +21,9 @@ export default function SectionArtikel() {
     const imageCard = [Artikel1, Artikel2, Artikel3, Artikel4]
     const image = [
         { img: Artikel1, label: "Urip iku Urup" },
-        { img: Artikel1, label: "Gatot Kaca" },
-        { img: Artikel1, label: "Adigang Adigung Adiguna" },
-        { img: Artikel1, label: "Hanoman" }
+        { img: Artikel2, label: "Gatot Kaca" },
+        { img: Artikel3, label: "Adigang Adigung Adiguna" },
+        { img: Artikel4, label: "Hanoman" }
     ]
     const [showIcon, setShowIcon] = useState(false);
     const [showTooltip, setShowTooltip] = useState(null);
